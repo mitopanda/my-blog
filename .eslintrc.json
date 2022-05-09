@@ -4,5 +4,7 @@
     "browser": true,
     "es6": true
   },
-  "extends": ["next/core-web-vitals", "prettier"]
+  "extends": [
+    "next/core-web-vitals"
+  ]
 }
