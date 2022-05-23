@@ -3,9 +3,9 @@ import { GetServerSideProps } from 'next';
 import { getPosts } from '../lib/notion';
 import { PageObject } from '../lib/notion/types';
 import { Box, List, ListItem, VStack } from '@chakra-ui/react';
-import { Header } from '../components/header';
-import { Footer } from '../components/footer';
-import { PageLink } from '../components/pageLink';
+import { Header } from '../components/Header';
+import { Footer } from '../components/Footer';
+import { PageLink } from '../components/PageLink';
 
 type Props = {
   pages: PageObject[];
