@@ -4,7 +4,7 @@ import { PageObject } from './types';
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
 // FIXME: 型どうするか考える
-export const getPosts = async () => {
+export const getPosts = async (): Promise<PageObject[] | never> => {
   const databaseId = process.env.NOTION_DATABASE_ID as string;
   try {
     const response = await notion.databases.query({
