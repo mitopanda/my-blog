@@ -1,7 +1,10 @@
 import type { FC } from 'react';
 import { Box, ListItem, Tag, Text, VStack } from '@chakra-ui/react';
 import { PageObject, Property, typedProperty } from '../lib/notion/types';
-import { format } from 'date-fns'"date-fns"ink from 'next/link"next/link"ops = {
+import { format } from 'date-fns';
+import Link from 'next/link';
+
+type Props = {
   page: PageObject;
 };
 
@@ -13,16 +16,16 @@ export const PageLink: FC<Props> = ({ page }) => {
 
   // TODO: リンク化する
   return (
-    <ListItem minH={"100px"}>
-      <VStack align={"start"}>
-        <Box w={"150px"}>
-          <Text fontSize={"md"} color={"gray.600"}>
-            {format(new Date(createdTime), "yyyy年MM月dd日")}
+    <ListItem minH={'100px'}>
+      <VStack align={'start'}>
+        <Box w={'150px'}>
+          <Text fontSize={'md'} color={'gray.600'}>
+            {format(new Date(createdTime), 'yyyy年MM月dd日')}
           </Text>
         </Box>
-        <Link href={"/hoge"}>
-          <Text fontSize={"2xl"} fontWeight={"bold"} cursor={"pointer"}>
-            {title[0]["plain_text"]}
+        <Link href={'/hoge'}>
+          <Text fontSize={'2xl'} fontWeight={'bold'} cursor={'pointer'}>
+            {title[0]['plain_text']}
           </Text>
         </Link>
         <Box>

@@ -32,7 +32,7 @@ const Home: NextPage<Props> = ({ pages }) => {
           {pages.map((page) => (
             <>
               <Divider />
-              <PageLink key={page"id"']} page={page}></PageLink>
+              <PageLink key={page['id']} page={page}></PageLink>
             </>
           ))}
         </List>
