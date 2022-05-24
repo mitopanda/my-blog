@@ -14,7 +14,6 @@ export const PageLink: FC<Props> = ({ page }) => {
   const title = typedProperty(properties, 'Name', 'title');
   const tags = typedProperty(properties, 'Tags', 'multi_select');
 
-  // TODO: リンク化する
   return (
     <ListItem minH={'100px'}>
       <VStack align={'start'}>
@@ -31,9 +30,11 @@ export const PageLink: FC<Props> = ({ page }) => {
         <Box>
           {tags &&
             tags.map((tag) => (
-              <Tag key={tag.id} mr={4}>
-                {tag.name}
-              </Tag>
+              <Link key={tag.id} href={`/tags/${tag.name}`}>
+                <Tag mr={4} cursor={'pointer'}>
+                  {tag.name}
+                </Tag>
+              </Link>
             ))}
         </Box>
       </VStack>

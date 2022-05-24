@@ -2,14 +2,7 @@ import type { NextPage } from 'next';
 import { GetServerSideProps } from 'next';
 import { getPosts } from '../lib/notion';
 import { PageObject } from '../lib/notion/types';
-import {
-  Box,
-  List,
-  ListItem,
-  VStack,
-  Divider,
-  Container,
-} from '@chakra-ui/react';
+import { Box, List, Divider, Container } from '@chakra-ui/react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { PageLink } from '../components/PageLink';
@@ -19,7 +12,25 @@ type Props = {
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const data = await getPosts();
+  const data = await getPosts({
+    filter: {
+      or: [
+        {
+          property: 'Publish',
+          checkbox: {
+            equals: true,
+          },
+        },
+      ],
+    },
+    sorts: [
+      {
+        property: 'CreatedAt',
+        direction: 'descending',
+      },
+    ],
+  });
+
   return { props: { pages: data } };
 };
 
