@@ -12,10 +12,10 @@ type Props = {
   tagName: string;
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async (
-  context
-) => {
-  const tagName = context.query.name as string;
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  query,
+}) => {
+  const tagName = query.name as string;
 
   const data = await getPosts({
     filter: {

@@ -1,30 +1,33 @@
 import type { NextPage } from 'next';
 import { GetServerSideProps } from 'next';
-import { getPosts } from '../lib/notion';
-import { PageObject } from '../lib/notion/types';
-import { Box, List, ListItem, VStack, Text } from '@chakra-ui/react';
+import { getBlocks } from '../lib/notion';
+import { BlockObject } from '../lib/notion/types';
+import { Box, VStack, Text } from '@chakra-ui/react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 
 type Props = {
-  pages: PageObject[];
+  blocks: BlockObject[];
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
-  const data = await getPosts();
-  return { props: { pages: data } };
+export const getServerSideProps: GetServerSideProps<Props> = async ({
+  query,
+}) => {
+  const blockId = query.id as string;
+  const data = await getBlocks(blockId);
+  return { props: { blocks: data } };
 };
 
-const Page: NextPage<Props> = ({ pages }) => {
+const Article: NextPage<Props> = ({ blocks }) => {
   return (
     <Box minH={'100vh'}>
       <Header></Header>
       <VStack>
-        <Text>hoge</Text>
+        <Text>{JSON.stringify(blocks)}</Text>
       </VStack>
       <Footer></Footer>
     </Box>
   );
 };
 
-export default Page;
+export default Article;

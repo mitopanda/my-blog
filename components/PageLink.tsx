@@ -22,7 +22,7 @@ export const PageLink: FC<Props> = ({ page }) => {
             {format(new Date(createdTime), 'yyyy年MM月dd日')}
           </Text>
         </Box>
-        <Link href={'/hoge'}>
+        <Link href={`/${page.id}`}>
           <Text fontSize={'2xl'} fontWeight={'bold'} cursor={'pointer'}>
             {title[0]['plain_text']}
           </Text>

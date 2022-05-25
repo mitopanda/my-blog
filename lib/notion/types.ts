@@ -18,7 +18,9 @@ export type BlockObject = MatchType<
   {
     type: unknown;
   }
->;
+> & {
+  children?: BlockObject[];
+};
 
 export type Property = PickType<PageObject, 'properties'>;
 
