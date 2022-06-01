@@ -5,6 +5,7 @@ import { BlockObject } from '../lib/notion/types';
 import { Box, VStack, Text } from '@chakra-ui/react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { RenderBlock } from '../components/RenderBlock';
 
 type Props = {
   blocks: BlockObject[];
@@ -23,7 +24,10 @@ const Article: NextPage<Props> = ({ blocks }) => {
     <Box minH={'100vh'}>
       <Header></Header>
       <VStack>
-        <Text>{JSON.stringify(blocks)}</Text>
+        {blocks.length > 0 &&
+          blocks.map((block) => (
+            <RenderBlock key={block.id} block={block}></RenderBlock>
+          ))}
       </VStack>
       <Footer></Footer>
     </Box>

@@ -1,8 +1,10 @@
-import { ElementType } from 'react';
 import { Client } from '@notionhq/client';
 
 export type MatchType<T, U, V = never> = T extends U ? T : V;
-type PickType<T, K extends keyof T> = T[K];
+type ElementType<T> = T extends (infer U)[] ? U : never;
+type PickType<T, K extends keyof T> = T[K] extends Record<string, infer U>
+  ? U
+  : never;
 
 export type PageObject = MatchType<
   ElementType<Awaited<ReturnType<Client['databases']['query']>>['results']>,
@@ -10,6 +12,7 @@ export type PageObject = MatchType<
     properties: unknown;
   }
 >;
+export type Property = PickType<PageObject, 'properties'>;
 
 export type BlockObject = MatchType<
   ElementType<
@@ -22,15 +25,17 @@ export type BlockObject = MatchType<
   children?: BlockObject[];
 };
 
-export type Property = PickType<PageObject, 'properties'>;
+export type RichText = ElementType<
+  MatchType<BlockObject, { type: 'paragraph' }>['paragraph']['rich_text']
+>;
 
-export const typedProperty = <T extends Property['type']>(
+export const appropriateProperty = <T extends Property['type']>(
   properties: PageObject['properties'],
   key: 'Tags' | 'Name' | 'CreatedAt',
   type: T
-): MatchType<PickType<Property, typeof key>, { type: T }> | null => {
+): MatchType<Property, { type: T }> => {
   const property = properties[key];
   return property.type === type
-    ? (property[type] as MatchType<PickType<Property, typeof key>, { type: T }>)
+    ? (property as MatchType<Property, { type: T }>)
     : null;
 };

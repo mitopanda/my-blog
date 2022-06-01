@@ -7,7 +7,7 @@ const databaseId = process.env.NOTION_DATABASE_ID as string;
 
 export const getPosts = async (
   args: Omit<QueryDatabaseParameters, 'database_id'>
-): Promise<PageObject[] | never> => {
+): Promise<PageObject[]> => {
   try {
     const response = await notion.databases.query({
       database_id: databaseId,
@@ -19,20 +19,19 @@ export const getPosts = async (
   }
 };
 
-export const getBlocks = async (
-  blockId: string
-): Promise<BlockObject[] | never> => {
+export const getBlocks = async (blockId: string): Promise<BlockObject[]> => {
   try {
-    const { results } = await notion.blocks.children.list({
+    const response = await notion.blocks.children.list({
       block_id: blockId,
     });
+    const results = response.results as BlockObject[];
     const blocks = results.map(async (block) => {
       if (block.has_children) {
         return { ...block, children: await getBlocks(block.id) };
       }
       return block;
     });
-    return Promise.all(blocks).then((blocks) => blocks as BlockObject[]);
+    return Promise.all(blocks).then((blocks) => blocks);
   } catch (e) {
     console.error(e);
   }
