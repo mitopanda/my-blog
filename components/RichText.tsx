@@ -1,13 +1,13 @@
 import type { FC } from 'react';
-import { RichText } from '../lib/notion/types';
+import { RichText as RichTextType } from '../lib/notion/types';
 import { Text } from './Text';
 
 type Props = {
-  richTextArray: RichText[];
+  richTextArray: RichTextType[];
 };
 
-export const Paragraph: FC<Props> = ({ richTextArray }) => {
-  const switchTextComponent = (richText: RichText) => {
+export const RichText: FC<Props> = ({ richTextArray }) => {
+  const switchTextComponent = (richText: RichTextType) => {
     switch (richText.type) {
       case 'text':
         return <Text {...richText}></Text>;
