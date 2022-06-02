@@ -1,8 +1,15 @@
 import type { FC } from 'react';
 import { BlockObject } from '../lib/notion/types';
 import { RichText } from './RichText';
-import { Heading } from '@chakra-ui/react';
+import {
+  Accordion,
+  AccordionButton,
+  AccordionItem,
+  AccordionPanel,
+  Heading,
+} from '@chakra-ui/react';
 import { List } from './List';
+import { Toggle } from './Toggle';
 
 type Props = {
   block: BlockObject;
@@ -32,7 +39,14 @@ export const RenderBlock: FC<Props> = ({ block }) => {
           </Heading>
         );
       case 'bulleted_list_item' || 'numbered_list_item':
-        return <List blockObj={block}></List>;
+        return <List key={block.id} blockObj={block}></List>;
+      case 'toggle':
+        return (
+          <Toggle
+            richTextArray={block.toggle.rich_text}
+            toggleChildren={block.children}
+          ></Toggle>
+        );
       default:
         return <p>{JSON.stringify(block)}</p>;
     }
