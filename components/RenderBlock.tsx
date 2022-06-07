@@ -1,15 +1,12 @@
 import type { FC } from 'react';
 import { BlockObject } from '../lib/notion/types';
 import { RichText } from './RichText';
-import {
-  Accordion,
-  AccordionButton,
-  AccordionItem,
-  AccordionPanel,
-  Heading,
-} from '@chakra-ui/react';
+import { Box, Divider, Heading, HStack } from '@chakra-ui/react';
 import { List } from './List';
 import { Toggle } from './Toggle';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { monokai } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { Table } from './Table';
 
 type Props = {
   block: BlockObject;
@@ -46,6 +43,35 @@ export const RenderBlock: FC<Props> = ({ block }) => {
             richTextArray={block.toggle.rich_text}
             toggleChildren={block.children}
           ></Toggle>
+        );
+      case 'quote':
+        return (
+          <Box pl={6} py={4} borderLeft={4} borderColor={'gray.200'}>
+            <RichText richTextArray={block.quote.rich_text}></RichText>
+          </Box>
+        );
+      case 'divider':
+        return <Divider></Divider>;
+      case 'callout':
+        return (
+          <HStack backgroundColor={'blackAlpha.200'} p={4} w={'100%'}>
+            <Box>
+              {block.callout.icon.type === 'emoji' && block.callout.icon.emoji}
+            </Box>
+            <RichText richTextArray={block.callout.rich_text}></RichText>
+          </HStack>
+        );
+      case 'code':
+        return (
+          <Box w={'100%'}>
+            <SyntaxHighlighter language={block.code.language} style={monokai}>
+              {block.code.rich_text[0].plain_text}
+            </SyntaxHighlighter>
+          </Box>
+        );
+      case 'table':
+        return (
+          <Table table={block.table} childrenBlocks={block.children}></Table>
         );
       default:
         return <p>{JSON.stringify(block)}</p>;

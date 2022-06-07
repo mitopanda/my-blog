@@ -29,6 +29,8 @@ export type RichText = ElementType<
   MatchType<BlockObject, { type: 'paragraph' }>['paragraph']['rich_text']
 >;
 
+export type Table = MatchType<BlockObject, { type: 'table' }>['table'];
+
 export const appropriateProperty = <T extends Property['type']>(
   properties: PageObject['properties'],
   key: 'Tags' | 'Name' | 'CreatedAt',

@@ -4,10 +4,14 @@ import { Text } from './Text';
 import React from 'react';
 
 type Props = {
-  richTextArray: RichTextType[];
+  richTextArray: RichTextType[] | null;
 };
 
 export const RichText: FC<Props> = ({ richTextArray }) => {
+  if (richTextArray === null) {
+    return null;
+  }
+
   const switchTextComponent = (richText: RichTextType) => {
     switch (richText.type) {
       case 'text':
@@ -20,7 +24,7 @@ export const RichText: FC<Props> = ({ richTextArray }) => {
   return (
     <div>
       {richTextArray &&
-        richTextArray.map((richText, i) => (
+        richTextArray.map((richText) => (
           <React.Fragment key={richText.plain_text}>
             {switchTextComponent(richText)}
           </React.Fragment>

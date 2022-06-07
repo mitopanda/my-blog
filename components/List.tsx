@@ -7,12 +7,16 @@ import React from 'react';
 type Props = {
   blockObj: BlockObject;
   previousType?: BlockObject['type'] | undefined;
-  isChild: boolean;
+  isChild?: boolean;
 };
 
 // FIXME: クソコードオブザイヤー
 // TODO: ordered listを正しい順番で表示したい
-export const List: FC<Props> = ({ blockObj, previousType, isChild }) => {
+export const List: FC<Props> = ({
+  blockObj,
+  previousType,
+  isChild = false,
+}) => {
   if (!['bulleted_list_item', 'numbered_list_item'].includes(blockObj.type)) {
     return null;
   }
@@ -25,7 +29,9 @@ export const List: FC<Props> = ({ blockObj, previousType, isChild }) => {
             richTextArray={
               blockObj.type === 'bulleted_list_item'
                 ? blockObj.bulleted_list_item.rich_text
-                : blockObj.numbered_list_item.rich_text
+                : blockObj.type === 'numbered_list_item'
+                ? blockObj.numbered_list_item.rich_text
+                : null
             }
           ></RichText>
         </ListItem>
