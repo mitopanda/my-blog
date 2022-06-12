@@ -24,8 +24,8 @@ export const PageLink: FC<Props> = ({ page }) => {
   );
 
   return (
-    <ListItem minH={'100px'}>
-      <VStack align={'start'}>
+    <ListItem py={6} minH={'100px'} background={'#FFF'} borderRadius={'20px'}>
+      <VStack align={'start'} px={6}>
         <Box w={'150px'}>
           <Text fontSize={'sm'} color={'gray.600'}>
             {format(new Date(created_time), 'yyyy/MM/dd')}

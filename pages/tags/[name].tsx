@@ -55,7 +55,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 
 const TagPage: NextPage<Props> = ({ pages, tagName }) => {
   return (
-    <Box minH={'100vh'} backgroundColor={'gray.50'}>
+    <Box minH={'100vh'} backgroundColor={'gray.100'}>
       <Container>
         <Header></Header>
         <Box>

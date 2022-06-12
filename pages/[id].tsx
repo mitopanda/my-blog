@@ -68,12 +68,17 @@ const Article: NextPage<Props> = ({ blocks, page }) => {
   );
 
   return (
-    <Box minH={'100vh'} backgroundColor={'gray.50'}>
+    <Box minH={'100vh'} backgroundColor={'gray.100'}>
       <Container maxW={{ base: '100%', lg: '55%' }} p={0}>
-        <Box px={6} background={'gray.50'}>
+        <Box px={6} mx={{ base: 4, md: 12, lg: 0 }} background={'gray.100'}>
           <Header></Header>
         </Box>
-        <Box p={6} m={0} backgroundColor={'#FFF'} borderRadius={'20px'}>
+        <Box
+          p={6}
+          mx={{ base: 4, md: 12, lg: 0 }}
+          backgroundColor={'#FFF'}
+          borderRadius={'20px'}
+        >
           <VStack align={'center'} mb={4} spacing={2}>
             <Text as={'span'} fontSize={'sm'} color={'gray.600'}>
               {format(new Date(created_time), 'yyyy/MM/dd')}

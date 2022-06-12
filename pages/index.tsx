@@ -36,15 +36,14 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
 const Home: NextPage<Props> = ({ pages }) => {
   return (
-    <Box minH={'100vh'} backgroundColor={'gray.50'}>
+    <Box minH={'100vh'} backgroundColor={'gray.100'}>
       <Container h={'100%'}>
         <Header></Header>
-        <Box py={6}>
+        <Box py={3}>
           <List spacing={3}>
             {pages.map((page) => (
               <React.Fragment key={page['id']}>
                 <PageLink page={page}></PageLink>
-                <Divider />
               </React.Fragment>
             ))}
           </List>
