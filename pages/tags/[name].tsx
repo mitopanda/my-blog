@@ -1,11 +1,19 @@
 import type { NextPage } from 'next';
 import { GetServerSideProps } from 'next';
-import { Box, List, Divider, Container, Text } from '@chakra-ui/react';
+import {
+  Box,
+  List,
+  Divider,
+  Container,
+  Heading,
+  VStack,
+} from '@chakra-ui/react';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { PageLink } from '../../components/PageLink';
 import { PageObject } from '../../lib/notion/types';
 import { getPosts } from '../../lib/notion';
+import Link from 'next/link';
 
 type Props = {
   pages: PageObject[];
@@ -47,18 +55,24 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({
 
 const TagPage: NextPage<Props> = ({ pages, tagName }) => {
   return (
-    <Box minH={'100vh'}>
-      <Header></Header>
+    <Box minH={'100vh'} backgroundColor={'gray.50'}>
       <Container>
-        <Text>{tagName}の記事一覧</Text>
-        <List spacing={3}>
-          {pages.map((page) => (
-            <>
-              <Divider />
-              <PageLink key={page['id']} page={page}></PageLink>
-            </>
-          ))}
-        </List>
+        <Header></Header>
+        <Box>
+          <VStack align={'center'} mb={4} spacing={2}>
+            <Heading as={'h1'} size={'lg'}>
+              {tagName}
+            </Heading>
+          </VStack>
+          <List spacing={3}>
+            {pages.map((page) => (
+              <>
+                <Divider />
+                <PageLink key={page['id']} page={page}></PageLink>
+              </>
+            ))}
+          </List>
+        </Box>
       </Container>
       <Footer></Footer>
     </Box>

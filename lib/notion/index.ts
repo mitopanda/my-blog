@@ -19,6 +19,15 @@ export const getPosts = async (
   }
 };
 
+export const getPost = async (pageId: string): Promise<PageObject> => {
+  try {
+    const response = await notion.pages.retrieve({ page_id: pageId });
+    return response as PageObject;
+  } catch (e) {
+    console.error(e);
+  }
+};
+
 export const getBlocks = async (blockId: string): Promise<BlockObject[]> => {
   try {
     const response = await notion.blocks.children.list({

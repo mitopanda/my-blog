@@ -19,19 +19,26 @@ export const RenderBlock: FC<Props> = ({ block }) => {
         return <RichText richTextArray={block.paragraph.rich_text}></RichText>;
       case 'heading_1':
         return (
-          <Heading as={'h1'} size={'2xl'}>
+          <Heading
+            as={'h1'}
+            size={'xl'}
+            borderBottom={'1px'}
+            w={'full'}
+            pb={2}
+            borderColor={'gray.300'}
+          >
             <RichText richTextArray={block.heading_1.rich_text}></RichText>
           </Heading>
         );
       case 'heading_2':
         return (
-          <Heading as={'h2'} size={'xl'}>
+          <Heading as={'h2'} size={'lg'}>
             <RichText richTextArray={block.heading_2.rich_text}></RichText>
           </Heading>
         );
       case 'heading_3':
         return (
-          <Heading as={'h3'} size={'lg'}>
+          <Heading as={'h3'} size={'md'}>
             <RichText richTextArray={block.heading_3.rich_text}></RichText>
           </Heading>
         );
@@ -46,7 +53,7 @@ export const RenderBlock: FC<Props> = ({ block }) => {
         );
       case 'quote':
         return (
-          <Box pl={6} py={4} borderLeft={4} borderColor={'gray.200'}>
+          <Box px={6} py={4} borderLeft={'4px'} borderColor={'gray.200'}>
             <RichText richTextArray={block.quote.rich_text}></RichText>
           </Box>
         );

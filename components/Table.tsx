@@ -26,7 +26,7 @@ export const Table: FC<Props> = ({ table, childrenBlocks }) => {
 
   return (
     <TableContainer>
-      <ChakraTable>
+      <ChakraTable size={'lg'} variant={'simple'}>
         <Thead>
           <Tr>
             {header.table_row.cells.map((cells, i) => (

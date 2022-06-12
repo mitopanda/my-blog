@@ -3,6 +3,7 @@ import { Box, ListItem, Tag, Text, VStack } from '@chakra-ui/react';
 import { PageObject, appropriateProperty } from '../lib/notion/types';
 import { format } from 'date-fns';
 import Link from 'next/link';
+import { TagLink } from './TagLink';
 
 type Props = {
   page: PageObject;
@@ -26,8 +27,8 @@ export const PageLink: FC<Props> = ({ page }) => {
     <ListItem minH={'100px'}>
       <VStack align={'start'}>
         <Box w={'150px'}>
-          <Text fontSize={'md'} color={'gray.600'}>
-            {format(new Date(created_time), 'yyyy年MM月dd日')}
+          <Text fontSize={'sm'} color={'gray.600'}>
+            {format(new Date(created_time), 'yyyy/MM/dd')}
           </Text>
         </Box>
         <Link href={`/${page.id}`}>
@@ -38,11 +39,7 @@ export const PageLink: FC<Props> = ({ page }) => {
         <Box>
           {multi_select &&
             multi_select.map((tag) => (
-              <Link key={tag.id} href={`/tags/${tag.name}`}>
-                <Tag mr={4} cursor={'pointer'}>
-                  {tag.name}
-                </Tag>
-              </Link>
+              <TagLink key={tag.id} tag={tag}></TagLink>
             ))}
         </Box>
       </VStack>

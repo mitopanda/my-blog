@@ -1,17 +1,17 @@
-import type { NextPage } from 'next';
-import { GetServerSideProps } from 'next';
+import type { GetStaticProps, NextPage } from 'next';
 import { getPosts } from '../lib/notion';
 import { PageObject } from '../lib/notion/types';
 import { Box, List, Divider, Container } from '@chakra-ui/react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { PageLink } from '../components/PageLink';
+import React from 'react';
 
 type Props = {
   pages: PageObject[];
 };
 
-export const getServerSideProps: GetServerSideProps<Props> = async () => {
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const data = await getPosts({
     filter: {
       or: [
@@ -36,17 +36,19 @@ export const getServerSideProps: GetServerSideProps<Props> = async () => {
 
 const Home: NextPage<Props> = ({ pages }) => {
   return (
-    <Box minH={'100vh'}>
-      <Header></Header>
-      <Container>
-        <List spacing={3}>
-          {pages.map((page) => (
-            <>
-              <Divider />
-              <PageLink key={page['id']} page={page}></PageLink>
-            </>
-          ))}
-        </List>
+    <Box minH={'100vh'} backgroundColor={'gray.50'}>
+      <Container h={'100%'}>
+        <Header></Header>
+        <Box py={6}>
+          <List spacing={3}>
+            {pages.map((page) => (
+              <React.Fragment key={page['id']}>
+                <PageLink page={page}></PageLink>
+                <Divider />
+              </React.Fragment>
+            ))}
+          </List>
+        </Box>
       </Container>
       <Footer></Footer>
     </Box>

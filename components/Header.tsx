@@ -4,9 +4,11 @@ import Link from 'next/link';
 
 export const Header: FC = () => {
   return (
-    <VStack my={4}>
+    <VStack py={4} align={'start'}>
       <Link href={'/'}>
-        <Heading cursor={'pointer'}>mishitoshi's blog</Heading>
+        <Heading size={'md'} cursor={'pointer'}>
+          mishitoshi's blog
+        </Heading>
       </Link>
     </VStack>
   );

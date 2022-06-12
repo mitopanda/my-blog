@@ -4,8 +4,10 @@ import { Text } from './Text';
 import {
   Accordion,
   AccordionButton,
+  AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Box,
 } from '@chakra-ui/react';
 import { RichText } from './RichText';
 import { RenderBlock } from './RenderBlock';
@@ -17,11 +19,14 @@ type Props = {
 
 export const Toggle: FC<Props> = ({ richTextArray, toggleChildren }) => {
   return (
-    <Accordion allowMultiple>
+    <Accordion allowToggle w={'full'}>
       <AccordionItem>
         <h2>
           <AccordionButton>
-            <RichText richTextArray={richTextArray}></RichText>
+            <Box flex="1" textAlign="left">
+              <RichText richTextArray={richTextArray}></RichText>
+            </Box>
+            <AccordionIcon></AccordionIcon>
           </AccordionButton>
         </h2>
         <AccordionPanel>

@@ -31,6 +31,24 @@ export type RichText = ElementType<
 
 export type Table = MatchType<BlockObject, { type: 'table' }>['table'];
 
+type NotionColor =
+  | 'default'
+  | 'gray'
+  | 'brown'
+  | 'orange'
+  | 'yellow'
+  | 'green'
+  | 'blue'
+  | 'purple'
+  | 'pink'
+  | 'red';
+
+export type MultiSelect = {
+  id: string;
+  name: string;
+  color: NotionColor;
+};
+
 export const appropriateProperty = <T extends Property['type']>(
   properties: PageObject['properties'],
   key: 'Tags' | 'Name' | 'CreatedAt',

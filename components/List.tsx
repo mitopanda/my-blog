@@ -1,6 +1,11 @@
 import type { FC } from 'react';
 import { BlockObject } from '../lib/notion/types';
-import { ListItem, OrderedList, UnorderedList } from '@chakra-ui/react';
+import {
+  ListItem,
+  OrderedList,
+  UnorderedList,
+  ListIcon,
+} from '@chakra-ui/react';
 import { RichText } from './RichText';
 import React from 'react';
 
@@ -8,6 +13,7 @@ type Props = {
   blockObj: BlockObject;
   previousType?: BlockObject['type'] | undefined;
   isChild?: boolean;
+  depth?: number;
 };
 
 // FIXME: クソコードオブザイヤー
@@ -56,12 +62,20 @@ export const List: FC<Props> = ({
       blockObj.type === 'bulleted_list_item' &&
       (previousType === undefined || blockObj.type !== previousType || isChild)
     ) {
-      return <UnorderedList>{renderListItems()}</UnorderedList>;
+      return (
+        <UnorderedList pl={6} m={0}>
+          {renderListItems()}
+        </UnorderedList>
+      );
     } else if (
       blockObj.type === 'numbered_list_item' &&
       (previousType === undefined || blockObj.type !== previousType || isChild)
     ) {
-      return <OrderedList>{renderListItems()}</OrderedList>;
+      return (
+        <OrderedList pl={6} m={0} stylePosition={'inside'}>
+          {renderListItems()}
+        </OrderedList>
+      );
     } else if (blockObj.type === 'numbered_list_item') {
       return <>{renderListItems()}</>;
     } else if (blockObj.type === 'bulleted_list_item') {
@@ -71,3 +85,4 @@ export const List: FC<Props> = ({
 
   return <>{buildListDom()}</>;
 };
+6;
