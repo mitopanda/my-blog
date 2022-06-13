@@ -7,7 +7,7 @@ export const Header: FC = () => {
     <VStack py={4} align={'start'}>
       <Link href={'/'}>
         <Heading size={'md'} cursor={'pointer'}>
-          mishitoshi's blog
+          mishitoshi&apos;s blog
         </Heading>
       </Link>
     </VStack>

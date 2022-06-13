@@ -48,7 +48,6 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const blockId = params.id as string;
 
   const page = await getPost(blockId);
-  console.log(page);
   const data = await getBlocks(blockId);
   return { props: { blocks: data, page: page } };
 };
