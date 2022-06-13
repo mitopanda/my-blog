@@ -81,7 +81,7 @@ export const RenderBlock: FC<Props> = ({ block }) => {
           <Table table={block.table} childrenBlocks={block.children}></Table>
         );
       default:
-        return <p>{JSON.stringify(block)}</p>;
+        return null;
     }
   };
 

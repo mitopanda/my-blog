@@ -18,7 +18,7 @@ export const RichText: FC<Props> = ({ richTextArray }) => {
       case 'text':
         return <Text {...richText}></Text>;
       default:
-        return <p>{JSON.stringify(richText)}</p>;
+        return null;
     }
   };
 
