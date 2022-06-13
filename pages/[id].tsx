@@ -12,6 +12,7 @@ import { RenderBlock } from '../components/RenderBlock';
 import { format } from 'date-fns';
 import Link from 'next/link';
 import { TagLink } from '../components/TagLink';
+import { Head } from '../components/Head';
 
 type Props = {
   blocks: BlockObject[];
@@ -68,6 +69,9 @@ const Article: NextPage<Props> = ({ blocks, page }) => {
 
   return (
     <Box minH={'100vh'} backgroundColor={'gray.100'}>
+      <Head>
+        <title>{`${title[0].plain_text} - mishitoshi's blog`}</title>
+      </Head>
       <Container maxW={{ base: '100%', lg: '55%' }} p={0}>
         <Box px={6} mx={{ base: 4, md: 12, lg: 0 }} background={'gray.100'}>
           <Header></Header>

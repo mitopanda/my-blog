@@ -6,6 +6,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { PageLink } from '../components/PageLink';
 import React from 'react';
+import { Head } from '../components/Head';
 
 type Props = {
   pages: PageObject[];
@@ -36,21 +37,24 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
 
 const Home: NextPage<Props> = ({ pages }) => {
   return (
-    <Box minH={'100vh'} backgroundColor={'gray.100'}>
-      <Container h={'100%'}>
-        <Header></Header>
-        <Box py={3}>
-          <List spacing={3}>
-            {pages.map((page) => (
-              <React.Fragment key={page['id']}>
-                <PageLink page={page}></PageLink>
-              </React.Fragment>
-            ))}
-          </List>
-        </Box>
-      </Container>
-      <Footer></Footer>
-    </Box>
+    <>
+      <Head />
+      <Box minH={'100vh'} backgroundColor={'gray.100'}>
+        <Container h={'100%'}>
+          <Header></Header>
+          <Box py={3}>
+            <List spacing={3}>
+              {pages.map((page) => (
+                <React.Fragment key={page['id']}>
+                  <PageLink page={page}></PageLink>
+                </React.Fragment>
+              ))}
+            </List>
+          </Box>
+        </Container>
+        <Footer></Footer>
+      </Box>
+    </>
   );
 };
 
