@@ -5,14 +5,22 @@ import {
   BlockObject,
   PageObject,
 } from '../lib/notion/types';
-import { Box, VStack, Text, Container, Heading } from '@chakra-ui/react';
+import {
+  Box,
+  VStack,
+  Text,
+  Container,
+  Heading,
+  Divider,
+} from '@chakra-ui/react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { RenderBlock } from '../components/RenderBlock';
 import { format } from 'date-fns';
-import Link from 'next/link';
 import { TagLink } from '../components/TagLink';
 import { Head } from '../components/Head';
+import { useRouter } from 'next/router';
+import { ShareAppeal } from '../components/ShareAppeal';
 
 type Props = {
   blocks: BlockObject[];
@@ -66,11 +74,14 @@ const Article: NextPage<Props> = ({ blocks, page }) => {
     'Tags',
     'multi_select'
   );
+  const router = useRouter();
+  const ORIGIN = 'https://blog.mishitoshi.com';
+  const pageTitle = `${title[0].plain_text} - mishitoshi's blog`;
 
   return (
     <Box minH={'100vh'} backgroundColor={'gray.100'}>
       <Head>
-        <title>{`${title[0].plain_text} - mishitoshi's blog`}</title>
+        <title>{pageTitle}</title>
       </Head>
       <Container maxW={{ base: '100%', lg: '55%' }} p={0}>
         <Box px={6} mx={{ base: 4, md: 12, lg: 0 }} background={'gray.100'}>
@@ -103,6 +114,11 @@ const Article: NextPage<Props> = ({ blocks, page }) => {
                 <RenderBlock key={block.id} block={block}></RenderBlock>
               ))}
           </VStack>
+          <Divider />
+          <ShareAppeal
+            url={ORIGIN + router.asPath}
+            title={pageTitle}
+          ></ShareAppeal>
         </Box>
       </Container>
 
