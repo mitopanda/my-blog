@@ -72,7 +72,7 @@ export const List: FC<Props> = ({
       (previousType === undefined || blockObj.type !== previousType || isChild)
     ) {
       return (
-        <OrderedList pl={6} m={0} stylePosition={'inside'}>
+        <OrderedList pl={6} m={0}>
           {renderListItems()}
         </OrderedList>
       );

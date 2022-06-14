@@ -24,7 +24,6 @@ export const RenderBlock: FC<Props> = ({ block }) => {
             size={'xl'}
             borderBottom={'1px'}
             w={'full'}
-            pb={2}
             borderColor={'gray.300'}
           >
             <RichText richTextArray={block.heading_1.rich_text}></RichText>
