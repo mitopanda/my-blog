@@ -108,7 +108,7 @@ const Article: NextPage<Props> = ({ blocks, page }) => {
                 ))}
             </Box>
           </VStack>
-          <VStack align={'start'} spacing={6}>
+          <VStack align={'start'} spacing={3}>
             {blocks.length > 0 &&
               blocks.map((block) => (
                 <RenderBlock key={block.id} block={block}></RenderBlock>
