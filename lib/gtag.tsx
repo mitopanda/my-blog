@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import Script from 'next/script';
+import NextHead from 'next/head';
 
 export const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID || '';
 export const existsGaId = GA_ID !== '';
@@ -55,14 +56,14 @@ export const usePageView = () => {
 export const GoogleAnalytics = () => (
   <>
     {existsGaId && (
-      <>
+      <NextHead>
         <Script
           defer
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
           strategy="afterInteractive"
         />
         <Script
-          id='ga-script'
+          id="ga-script"
           defer
           dangerouslySetInnerHTML={{
             __html: `
@@ -74,7 +75,7 @@ export const GoogleAnalytics = () => (
           }}
           strategy="afterInteractive"
         />
-      </>
+      </NextHead>
     )}
   </>
 );
