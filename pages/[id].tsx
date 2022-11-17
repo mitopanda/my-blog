@@ -58,7 +58,7 @@ export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
 
   const page = await getPost(blockId);
   const data = await getBlocks(blockId);
-  return { props: { blocks: data, page: page } };
+  return { props: { blocks: data, page: page }, revalidate: 60 };
 };
 
 const Article: NextPage<Props> = ({ blocks, page }) => {

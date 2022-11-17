@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     ],
   });
 
-  return { props: { pages: data } };
+  return { props: { pages: data }, revalidate: 60 };
 };
 
 const Home: NextPage<Props> = ({ pages }) => {
