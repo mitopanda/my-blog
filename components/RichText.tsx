@@ -23,7 +23,7 @@ export const RichText: FC<Props> = ({ richTextArray }) => {
   };
 
   return (
-    <Box>
+    <Box maxW={'100%'}>
       {richTextArray &&
         richTextArray.map((richText) => (
           <React.Fragment key={richText.plain_text}>

@@ -52,7 +52,13 @@ export const RenderBlock: FC<Props> = ({ block }) => {
         );
       case 'quote':
         return (
-          <Box px={6} py={4} borderLeft={'4px'} borderColor={'gray.200'}>
+          <Box
+            maxW={'100%'}
+            px={6}
+            py={4}
+            borderLeft={'4px'}
+            borderColor={'gray.200'}
+          >
             <RichText richTextArray={block.quote.rich_text}></RichText>
           </Box>
         );
