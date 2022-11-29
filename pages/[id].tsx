@@ -12,6 +12,7 @@ import {
   Container,
   Heading,
   Divider,
+  Flex,
 } from '@chakra-ui/react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -74,6 +75,12 @@ const Article: NextPage<Props> = ({ blocks, page }) => {
     'Tags',
     'multi_select'
   );
+  const { rich_text } = appropriateProperty(
+    properties,
+    'Description',
+    'rich_text'
+  );
+  const description = rich_text.map((text) => text.plain_text).join();
   const router = useRouter();
   const ORIGIN = 'https://blog.mishitoshi.com';
   const pageTitle = `${title[0].plain_text} - mishitoshi's blog`;
@@ -82,6 +89,7 @@ const Article: NextPage<Props> = ({ blocks, page }) => {
     <Box minH={'100vh'} backgroundColor={'gray.100'}>
       <Head>
         <title>{pageTitle}</title>
+        {description && <meta name="description" content={description} />}
       </Head>
       <Container maxW={{ base: '100%', lg: '55%' }} p={0}>
         <Box px={6} mx={{ base: 4, md: 12, lg: 0 }} background={'gray.100'}>
@@ -100,13 +108,12 @@ const Article: NextPage<Props> = ({ blocks, page }) => {
             <Heading as={'h1'} size={'xl'}>
               {title[0].plain_text}
             </Heading>
-            <Text></Text>
-            <Box>
+            <Flex w="100%" alignItems="center" justifyContent="center">
               {multi_select &&
                 multi_select.map((tag) => (
                   <TagLink key={tag.id} tag={tag}></TagLink>
                 ))}
-            </Box>
+            </Flex>
           </VStack>
           <VStack align={'start'} spacing={3}>
             {blocks.length > 0 &&

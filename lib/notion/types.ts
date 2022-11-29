@@ -51,7 +51,7 @@ export type MultiSelect = {
 
 export const appropriateProperty = <T extends Property['type']>(
   properties: PageObject['properties'],
-  key: 'Tags' | 'Name' | 'CreatedAt',
+  key: 'Tags' | 'Name' | 'CreatedAt' | 'Description',
   type: T
 ): MatchType<Property, { type: T }> => {
   const property = properties[key];
