@@ -37,7 +37,6 @@ export const Text: FC<RichText> = ({ annotations, ...props }) => {
   const styleProps = {
     fontWeight: bold && 'bold',
     fontStyle: italic && 'italic',
-    whiteSpace: 'pre-wrap',
     textDecoration,
     color: colorKeyMap[color] && colorKeyMap[color],
     backgroundColor: bgColorKeyMap[color] && bgColorKeyMap[color],
